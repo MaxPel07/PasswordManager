@@ -6,3 +6,10 @@ D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\D
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.CoreCompileInputs.cache
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.exe
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.pdb
+E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\bin\Debug\GestionnaireDeMotDePasse.exe.config
+E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\bin\Debug\GestionnaireDeMotDePasse.exe
+E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\bin\Debug\GestionnaireDeMotDePasse.pdb
+E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.AssemblyReference.cache
+E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.CoreCompileInputs.cache
+E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.exe
+E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.pdb

@@ -12,33 +12,13 @@ using System.Threading.Tasks;
 
 namespace GestionnaireDeMotDePasse
 {
-    internal class Program
+    public class Program
     {
-        static void Main(string[] args)
+        // chemin du dossier password
+        public static string FolderPath { get; } = @"E:\Semestre 2\I114_codificationChiffrement\Projet\password";
+        
+        public static void Main()
         {
-            // chemin du dossier password
-            string folderPath = @"D:\Semestre 2\I114_codificationChiffrement\Projet\password";
-
-            // nom du fichier qui contient les mots de passe
-            string fileName = "password.txt";
-
-            // chemin du fichier txt de mot de passe
-            string filePath = Path.Combine(folderPath, fileName);
-
-
-            // Vérifie si le fichier existe
-            if (!File.Exists(filePath))
-            {
-                // Crée un nouveau fichier s'il n'existe
-                using (StreamWriter sw = File.CreateText(filePath))
-                {
-                    // test d'écriture dans le fichier txt
-                    sw.WriteLine("Contenu initial du fichier...");
-                }
-
-                Console.WriteLine("Le fichier " + fileName + " a été créé avec succès.");
-            }
-
             Console.Write("Master password = abc\n"+
                           "*******************************************\n" +
                           "Sélectionnez une action\n" +
@@ -48,29 +28,30 @@ namespace GestionnaireDeMotDePasse
                           "4. Quitter le programme\n" +
                           "*******************************************\n\n" +
                           "Faites votre choix : ");
+
             ConsoleKeyInfo key = Console.ReadKey();
             switch (key.KeyChar)
             {
                 case '1':
-                    PasswordManagement.ViewPassword();
                     Console.Clear();
+                    PasswordManagement.ViewPassword();
                     break;
 
                 case '2':
-                    PasswordManagement.AddPassword();
                     Console.Clear();
+                    PasswordManagement.AddPassword();
                     break;
 
                 case '3':
-                    PasswordManagement.RemovePassword();
                     Console.Clear();
+                    PasswordManagement.RemovePassword();
                     break;
 
                 case '4':
                     Environment.Exit(0);
                     break;
             }
-            Console.ReadLine();
+                Console.ReadLine();
         }
     }
 }

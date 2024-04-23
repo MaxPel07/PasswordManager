@@ -52,10 +52,10 @@ namespace GestionnaireDeMotDePasse
                 {
                     // Lecture du contenu du fichier sélectionné
                     string selectedFilePath = passwordFiles[selectedFileNumber - 2];
-                    string fileContent = File.ReadAllText(selectedFilePath);
+                    string encryptedText = File.ReadAllText(selectedFilePath);
 
                     // Affichage du contenu du fichier
-                    Console.WriteLine("\n" + fileContent);
+                    Console.WriteLine("\n" + TextDecryption(encryptedText));
 
                     // Revenir au menu en appuyant sur Enter
                     Console.WriteLine("Appuyer sur Enter pour masquer le mot de passe");
@@ -160,10 +160,12 @@ namespace GestionnaireDeMotDePasse
                                             "\nLOGIN : " + userInputLogin +
                                             "\nMOT DE PASSE : " + userInputPassword);
 
-                    // Ecriture dans le fichier text du mot de passe 
-                    File.WriteAllText(filePath, textWithoutEncryption);
+                    // Ecriture dans le fichier text du mot de passe chiffré
+                    File.WriteAllText(filePath, TextEncryption(textWithoutEncryption));
 
-                    Console.WriteLine("mot de passe ajouté avec succès");
+                    Console.WriteLine("\nmot de passe ajouté avec succès");
+                    Console.ReadLine();
+                    Program.Showmenu();
                 }
                 else
                 {
@@ -271,22 +273,42 @@ namespace GestionnaireDeMotDePasse
             }
         }
 
-        public static void TextEncryption(string textWithoutEncryption)
+        public static string TextEncryption(string textWithoutEncryption)
         {
             string masterPassword = Program.masterPassword;
-            Console.WriteLine(masterPassword);
+
+            StringBuilder encryptedText = new StringBuilder();
 
             for (int i = 0; i < textWithoutEncryption.Length; i++)
             {
+                char caractere = textWithoutEncryption[i];
+                char cle = masterPassword[i % masterPassword.Length]; // Répétition du mot de passe
 
+                // Calcul du caractère chiffré
+                char caractereChiffre = (char)(caractere + cle);
+                encryptedText.Append(caractereChiffre);
             }
 
-                return encryptedText;
+            return encryptedText.ToString();
         }
 
-        public static void TextDecryption()
+        public static string TextDecryption(string encryptedText)
         {
             string masterPassword = Program.masterPassword;
+
+            StringBuilder decryptedText = new StringBuilder();
+
+            for (int i = 0; i < encryptedText.Length; i++)
+            {
+                char caractereChiffre = encryptedText[i];
+                char cle = masterPassword[i % masterPassword.Length]; // Répétition du mot de passe
+
+                // Calcul du caractère déchiffré
+                char caractereDechiffre = (char)(caractereChiffre - cle);
+                decryptedText.Append(caractereDechiffre);
+            }
+
+            return decryptedText.ToString();
         }
     }
 }

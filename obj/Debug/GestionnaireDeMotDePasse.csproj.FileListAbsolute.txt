@@ -2,7 +2,6 @@ D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\bin\D
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\bin\Debug\GestionnaireDeMotDePasse.exe
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\bin\Debug\GestionnaireDeMotDePasse.pdb
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.AssemblyReference.cache
-D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.SuggestedBindingRedirects.cache
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.CoreCompileInputs.cache
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.exe
 D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.pdb
@@ -13,3 +12,4 @@ E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\D
 E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.CoreCompileInputs.cache
 E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.exe
 E:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.pdb
+D:\Semestre 2\I114_codificationChiffrement\Projet\GestionnaireDeMotDePasse\obj\Debug\GestionnaireDeMotDePasse.csproj.SuggestedBindingRedirects.cache

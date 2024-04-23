@@ -1,4 +1,8 @@
-﻿using System;
+﻿/// ETML
+/// Auteur : Maxime Pelloquin
+/// Date de création :      19.03.2024
+/// Dernière modification : 26.03.2024
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +13,9 @@ namespace GestionnaireDeMotDePasse
 {
     internal class PasswordManagement
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static void ViewPassword()
         {
             string folderPath = Program.FolderPath;
@@ -51,50 +58,235 @@ namespace GestionnaireDeMotDePasse
                     Console.WriteLine("\n" + fileContent);
 
                     // Revenir au menu en appuyant sur Enter
-                    Console.WriteLine("Appuyer sur Enter pour masquer le mot de passe et revenir au menu");
+                    Console.WriteLine("Appuyer sur Enter pour masquer le mot de passe");
+                    Console.ReadLine();
+                    Console.Clear();
+                    ViewPassword();
+                }
+                else if (selectedFileNumber == 1) 
+                {
+                    Console.Clear();
+                    Program.Showmenu();
                 }
                 else
                 {
+                    Console.WriteLine("ERREUR : Entrée invalide");
+                    Console.ReadLine();
                     Console.Clear();
-                    Program.Main();
+                    ViewPassword();
                 }
             }
-
-            // Message d'erreur si le dossier password n'existe pas
             else
             {
-                Console.WriteLine("Le dossier spécifié n'existe pas.");
+                Console.WriteLine("Erreur : le dossier de mot de passe n'existe pas");
             }
+        }
 
-            Console.ReadLine();
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void AddPasswordMenu()
+        {
+            Console.WriteLine("********************************\n" +
+                              "Ajouter un mot de passe :\n" +
+                              "1. Retour au menu principal\n" +
+                              "2. Ajouter un mot de passe");
 
             ConsoleKeyInfo key = Console.ReadKey();
             switch (key.KeyChar)
             {
                 case '1':
-                    Program.Main();
                     Console.Clear();
+                    Program.Showmenu();
                     break;
 
                 case '2':
-                    PasswordManagement.AddPassword();
                     Console.Clear();
+                    AddPassword();
+                    break;
+                
+                default:
+                    Console.Clear();
+                    AddPasswordMenu();
                     break;
             }
-            Console.ReadLine();
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static void AddPassword()
         {
-            Console.WriteLine("********************************\n" +
-                              "Ajouter un mot de passe :\n" +
-                              "1. Retour au menu principal");
-            Console.ReadLine();
+            string folderPath = Program.FolderPath;
+
+            // Vérifie si le dossier existe
+            if (Directory.Exists(folderPath))
+            {
+                // Demande le nom du site
+                Console.Write("Nom du site : ");
+
+                // Lecture de l'entrée utilisateur
+                string userInput = Console.ReadLine();
+                if(userInput.Length != 0)
+                {
+                    // Créer le chemin vers le nouveau mot de passe
+                    string filePath = Path.Combine(folderPath, userInput + ".txt");
+
+                    // Demande l'URL du site
+                    Console.Write("URL : ");
+
+                    // Lecture de l'entrée utilisateur
+                    string userInputURL = Console.ReadLine();
+
+
+
+                    // Demande le login du site
+                    Console.Write("LOGIN : ");
+
+                    // Lecture de l'entrée utilisateur
+                    string userInputLogin = Console.ReadLine();
+
+
+                    // Demande le mot de passe du site
+                    Console.Write("MOT DE PASSE : ");
+
+                    // Lecture de l'entrée utilisateur
+                    string userInputPassword = Console.ReadLine();
+
+
+                    // Création du text à mettre dans le fichier du mot de passe
+                    string textWithoutEncryption = ("URL : " + userInputURL +
+                                            "\nLOGIN : " + userInputLogin +
+                                            "\nMOT DE PASSE : " + userInputPassword);
+
+                    // Ecriture dans le fichier text du mot de passe 
+                    File.WriteAllText(filePath, textWithoutEncryption);
+
+                    Console.WriteLine("mot de passe ajouté avec succès");
+                }
+                else
+                {
+                    Console.Write("ERREUR : champ vide");
+                    Console.ReadLine();
+                    Console.Clear();
+                    AddPassword();
+                }
+            }
+            else
+            {
+                Console.Write("Erreur : le dossier de mot de passe n'existe pas");
+            }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         public static void RemovePassword()
         {
+            string folderPath = Program.FolderPath;
+            int passwordNumberNisplay = 2;
 
+            Console.WriteLine("***************************************\n" +
+                              "Supprimer un mot de passe :\n" +
+                              "1. Retour au menu principal");
+
+            // Vérifie si le dossier existe
+            if (Directory.Exists(folderPath))
+            {
+                // Récupère tous les fichiers dans le dossier spécifié
+                string[] passwordFiles = Directory.GetFiles(folderPath);
+
+                // Récupère le nombre de fichier de mot de passe
+                int nbOfPassword = passwordFiles.Length;
+
+                // Affiche les noms de tous les fichiers
+                for (int i = 0; i < nbOfPassword; i++)
+                {
+                    Console.WriteLine(passwordNumberNisplay + ". " + Path.GetFileNameWithoutExtension(passwordFiles[i]));
+                    passwordNumberNisplay++;
+                }
+
+                Console.WriteLine("***************************************");
+                Console.Write("Faites votre choix : ");
+
+                // Lecture de l'entrée utilisateur
+                string userInput = Console.ReadLine();
+
+                
+                if (int.TryParse(userInput, out int selectedFileNumber) && selectedFileNumber >= 2 && selectedFileNumber <= nbOfPassword + 1)
+                {
+                    // Index du fichier sélectionné dans le tableau
+                    int selectedFileIndex = selectedFileNumber - 2;
+
+                    // Nom du fichier sélectionné
+                    string selectedFileName = Path.GetFileNameWithoutExtension(passwordFiles[selectedFileIndex]);
+
+                    // Chemin complet du fichier sélectionné
+                    string selectedFilePath = passwordFiles[selectedFileIndex];
+
+                    // Message de verification à l'utilisateur
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Etes-vous sur de vouloir supprimer ce mot de passe : " + selectedFileName + " ?"); //implémenter le code pour le nom du mot de passe
+                    Console.ResetColor();
+                    Console.Write("Confirmez (O/N) : ");
+                    string confirmation = Console.ReadLine().ToLower();
+                    
+                    if(confirmation == "o")
+                    {
+                        // Supprimer le fichier
+                        File.Delete(selectedFilePath);
+                        Console.WriteLine("Le mot de passe a été supprimé avec succès.");
+                    }
+                    else if(confirmation == "n")
+                    {
+                        // La suppression n'a pas abouti
+                        Console.WriteLine("Opération annulée.");
+                    }
+                    else
+                    {
+                        // L'utilisateur n'a rentré ni "o" ni "n"
+                        Console.WriteLine("Réponse non valide. Opération annulée.");
+                    }
+                    Console.ReadLine();
+                    Console.Clear();
+                    RemovePassword();
+                }
+                else if (userInput == "1")
+                {
+                    Program.Showmenu();
+                }
+                else
+                {
+                    Console.WriteLine("ERREUR : Entrée invalide");
+                    Console.ReadLine();
+                    Console.Clear();
+                    RemovePassword();
+                }
+            }
+            else
+            {
+                Console.Write("Erreur : le dossier de mot de passe n'existe pas");
+            }
+        }
+
+        public static void TextEncryption(string textWithoutEncryption)
+        {
+            string masterPassword = Program.masterPassword;
+            Console.WriteLine(masterPassword);
+
+            for (int i = 0; i < textWithoutEncryption.Length; i++)
+            {
+
+            }
+
+                return encryptedText;
+        }
+
+        public static void TextDecryption()
+        {
+            string masterPassword = Program.masterPassword;
         }
     }
 }
